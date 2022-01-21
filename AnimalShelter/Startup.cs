@@ -51,8 +51,10 @@ namespace AnimalShelter
             });
 
             services.AddCors(options => 
-            options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()
-            ));
+            {
+            options.AddDefaultPolicy(builder=>builder.WithOrigins("Https://localhost:5002"));
+            options.AddPolicy("mypolicy", builder => builder.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
