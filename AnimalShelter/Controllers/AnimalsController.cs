@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 using AnimalShelter.Models;
 
 namespace AnimalShelter.Controllers
 {
+  [EnableCors("mypolicy")]
   [Route("api/[controller]")]
   [ApiController]
   public class AnimalsController : ControllerBase
