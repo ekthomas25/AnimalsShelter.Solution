@@ -18,6 +18,9 @@ namespace AnimalShelter.Controllers
       _db = db;
     }
 
+    /// <summary>
+    /// Returns all animals with the specific query parameters.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Animal>>> Get(string type, string breed, int age, string gender, double weight)
     {
@@ -51,6 +54,9 @@ namespace AnimalShelter.Controllers
       return await _db.Animals.ToListAsync();
     }
 
+    /// <summary>
+    /// Adds an Animal to the API.
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<Animal>> Post(Animal animal)
     {
@@ -60,6 +66,9 @@ namespace AnimalShelter.Controllers
       return CreatedAtAction(nameof(GetAnimal), new { id = animal.AnimalId }, animal);
     }
 
+    /// <summary>
+    /// Returns a specific Animal by Id.
+    /// </summary>
     [HttpGet("{id}")]
     public async Task<ActionResult<Animal>> GetAnimal(int id)
     {
@@ -73,6 +82,9 @@ namespace AnimalShelter.Controllers
       return animal;
     }
 
+    /// <summary>
+    /// Edits a specific Animal.
+    /// </summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Animal animal)
     {
@@ -102,6 +114,9 @@ namespace AnimalShelter.Controllers
       return NoContent();
     }
 
+    /// <summary>
+    /// Deletes a specific Animal.
+    /// </summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAnimal(int id)
     {
