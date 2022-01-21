@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
@@ -54,6 +55,12 @@ namespace AnimalShelter
             {
             options.AddDefaultPolicy(builder=>builder.WithOrigins("Https://localhost:5002"));
             options.AddPolicy("mypolicy", builder => builder.AllowAnyOrigin());
+            });
+
+            services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
             });
         }
 
