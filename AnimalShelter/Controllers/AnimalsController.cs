@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AnimalShelter.Models;
@@ -19,8 +20,35 @@ namespace AnimalShelter.Controllers
 
     // GET api/animals
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get()
+    public async Task<ActionResult<IEnumerable<Animal>>> Get(string type, string breed, int age, string gender, double weight)
     {
+      var query = _db.Animals.AsQueryable();
+      
+      if (type != null)
+      {
+        query = query.Where(entry => entry.Type == type);
+      }
+      
+      if (breed != null)
+      {
+        query = query.Where(entry => entry.Breed == breed);
+      }
+
+      if (age != 0)
+      {
+        query = query.Where(entry => entry.Age == age);
+      }
+
+      if(gender != null)
+      {
+        query = query.Where(entry => entry.Gender == gender);
+      }
+
+      if(weight != 0.0)
+      {
+        query = query.Where(entry => entry.Weight == weight);
+      }
+      
       return await _db.Animals.ToListAsync();
     }
 
