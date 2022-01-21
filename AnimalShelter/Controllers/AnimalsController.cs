@@ -48,7 +48,7 @@ namespace AnimalShelter.Controllers
       {
         query = query.Where(entry => entry.Weight == weight);
       }
-      
+
       return await _db.Animals.ToListAsync();
     }
 
@@ -74,6 +74,41 @@ namespace AnimalShelter.Controllers
       }
 
       return animal;
+    }
+
+    // PUT: api/Animals/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, Animal animal)
+    {
+      if (id != animal.AnimalId)
+      {
+        return BadRequest();
+      }
+
+      _db.Entry(animal).State = EntityState.Modified;
+
+      try
+      {
+        await _db.SaveChangesAsync();
+      }
+      catch(DbUpdateConcurrencyException)
+      {
+        if (!AnimalExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return NoContent();
+    }
+
+    private bool AnimalExists(int id)
+    {
+      return _db.Animals.Any(e => e.AnimalId == id);
     }
   }
 }
