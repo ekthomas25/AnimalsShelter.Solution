@@ -53,7 +53,7 @@ An API built for an Animal Shelter that has cats and dogs. Users can search the 
 * Then run the command `dotnet restore` to install project dependencies
 
 ### To Launch the API
-* Run the command `dotnet run` to view the project in the browser or to access the API via Postman.
+* Run the command `dotnet run` to view the project in the browser or to access the API via Postman. The user is able to see the in use version of the API(v1.0) when using Postman.
 
 * Navigate to http://localhost:5000/ in your browser.
 
