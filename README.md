@@ -1,4 +1,5 @@
 # Animal Shelter API
+Version 1.0
 
 #### By Liz Thomas
 
@@ -58,11 +59,13 @@ An API built for an Animal Shelter that has cats and dogs. Users can search the 
 
 ## API Documentation
 
+Base URL: https://localhost:5000
+
 ### Using Swagger documentation
 
 To view the Animal Shelter API with Swashbuckle, launch the API as instructed above and input the following URL into your browser: `http://localhost:5000/index.html`
 
-#### HTTP Requests
+#### HTTP Request Structure
 
 ```
 GET /api/Animals
@@ -71,6 +74,44 @@ GET /api/Animals/{id}
 PUT /api/Animals/{id}
 DELETE /api/Animals/{id}
 ```
+
+#### Path Parameters
+|Parameter|Type|Description|
+| :---: | :---: | --- |
+| Type | String | Returns any animal by type. Ex: Cat or Dog |
+| Breed | String | Returns any animal by breed. Ex: Australian Cattle Dog |
+| Age | Integer | Returns any animal by age in years. |
+| Gender | String | Returns any animal by gender. |
+| Weight | Double | Returns any animal by weight in pounds. Ex: 5.5 |
+
+#### Example Query
+```
+http://localhost:5000/api/animals/?type=cat&age=4&gender=male
+```
+
+#### Sample JSON Response
+```
+{
+  "animalId": 2,
+  "name": "Indy",
+  "type": "Cat",
+  "breed": "Russian Blue",
+  "color": "Grey",
+  "age": 16,
+  "gender": "Male",
+  "weight": 8.3,
+  "location": "The Cattery"
+}
+```
+#### About CORS
+
+From the Microsoft Documentation:
+- _Is a W3C standard that allows a server to relax the same-origin policy._
+- _Is not a security feature, CORS relaxes security. An API is not safer by allowing CORS._
+- _Allows a server to explicitly allow some cross-origin requests while rejecting others._
+- _Is safer and more flexible than earlier techniques, such as JSONP._
+For more information, read the Microsoft Documentation on [How CORS works](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-2.2#how-cors).
+
 
 ## Known Bugs
 
